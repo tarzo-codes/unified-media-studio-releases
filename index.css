@@ -541,7 +541,8 @@ a {
 .tab-content {
   display: none;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  flex: 1;
   min-height: 0;
   overflow: hidden;
 }
@@ -620,17 +621,17 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0;
+  flex: 1;
   overflow-y: auto;
-  max-height: 260px;
-  padding-right: 4px;
+  min-height: 0;
 }
 
 .pipeline-step {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  overflow: hidden;
   transition: border-color 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
 }
 
 .pipeline-step:hover {
@@ -649,8 +650,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 14px;
+  padding: 8px 14px;
   gap: 10px;
+  cursor: default;
 }
 
 .pipeline-step-left {
@@ -702,10 +704,17 @@ a {
 }
 
 .pipeline-step-config {
-  display: flex;
+  display: none;
   gap: 8px;
   padding: 0 14px 10px 14px;
   flex-wrap: wrap;
+  border-top: 1px solid var(--border-color);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+
+.pipeline-step:hover .pipeline-step-config {
+  display: flex;
 }
 
 .pipe-config-row {

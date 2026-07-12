@@ -216,38 +216,183 @@
                 <button class="btn btn-tab-run" onclick="runSimulatedTask('enhance')">Apply Audio enhancement</button>
             </div>
 
-            <!-- 5. Bulk Pipeline Tab -->
+            <!-- 5. Bulk Pipeline -->
             <div id="tab-pipeline" class="tab-content">
               <div class="tab-content-header">
                 <h4>Bulk Processing Pipeline</h4>
-                <p>Build and orchestrate sequential pipelines across your workspace media assets.</p>
+                <p>Compose sequential processing steps. Each enabled block runs in order on your selected file.</p>
               </div>
-              <div class="settings-form">
-                <div class="form-row">
-                  <label>Configure Processing Blocks:</label>
-                  <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="pipe-silence" checked>
-                      <span>1. Trim Silences (-35dB threshold)</span>
+              <div class="pipeline-builder">
+
+                <!-- Step 1 -->
+                <div class="pipeline-step" id="pstep-silence">
+                  <div class="pipeline-step-header">
+                    <div class="pipeline-step-left">
+                      <span class="pipeline-step-num">01</span>
+                      <div class="pipeline-step-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="9.8" y1="8.2" x2="21" y2="19.4"/><line x1="21" y1="4.6" x2="9.8" y2="15.8"/></svg>
+                      </div>
+                      <div>
+                        <div class="pipeline-step-name">Silence Trimmer</div>
+                        <div class="pipeline-step-desc">Remove dead air using dB threshold detection</div>
+                      </div>
                     </div>
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="pipe-transcribe" checked>
-                      <span>2. Transcribe Audio (Whisper Base model)</span>
+                    <label class="pipe-toggle">
+                      <input type="checkbox" id="pipe-silence" checked onchange="updatePipelineStepState('pstep-silence', this.checked)">
+                      <span class="pipe-toggle-track"></span>
+                    </label>
+                  </div>
+                  <div class="pipeline-step-config">
+                    <div class="pipe-config-row">
+                      <span>Threshold</span>
+                      <select id="pipe-silence-thresh">
+                        <option value="-35">-35 dB (Default)</option>
+                        <option value="-40">-40 dB (Aggressive)</option>
+                        <option value="-25">-25 dB (Conservative)</option>
+                      </select>
                     </div>
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="pipe-enhance">
-                      <span>3. Vocal Enhance (EQ & Noise Reduction)</span>
-                    </div>
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="pipe-convert" checked>
-                      <span>4. Transcode Output Container (MP4 H.264 Preset)</span>
+                    <div class="pipe-config-row">
+                      <span>Margin</span>
+                      <select id="pipe-silence-margin">
+                        <option value="0.2">0.2s padding</option>
+                        <option value="0.05">0.05s tight</option>
+                        <option value="0.5">0.5s relaxed</option>
+                      </select>
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-tab-run" onclick="runSimulatedTask('pipeline')">Execute Bulk Pipeline</button>
+
+                <div class="pipeline-connector"></div>
+
+                <!-- Step 2 -->
+                <div class="pipeline-step" id="pstep-transcribe">
+                  <div class="pipeline-step-header">
+                    <div class="pipeline-step-left">
+                      <span class="pipeline-step-num">02</span>
+                      <div class="pipeline-step-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                      </div>
+                      <div>
+                        <div class="pipeline-step-name">AI Transcription</div>
+                        <div class="pipeline-step-desc">Generate subtitles via OpenAI Whisper</div>
+                      </div>
+                    </div>
+                    <label class="pipe-toggle">
+                      <input type="checkbox" id="pipe-transcribe" checked onchange="updatePipelineStepState('pstep-transcribe', this.checked)">
+                      <span class="pipe-toggle-track"></span>
+                    </label>
+                  </div>
+                  <div class="pipeline-step-config">
+                    <div class="pipe-config-row">
+                      <span>Model</span>
+                      <select id="pipe-transcribe-model">
+                        <option value="base">Whisper Base (Fast)</option>
+                        <option value="small">Whisper Small (Balanced)</option>
+                        <option value="medium">Whisper Medium (Accurate)</option>
+                      </select>
+                    </div>
+                    <div class="pipe-config-row">
+                      <span>Output</span>
+                      <select id="pipe-transcribe-fmt">
+                        <option value="srt">.srt subtitles</option>
+                        <option value="txt">Plain .txt transcript</option>
+                        <option value="vtt">WebVTT .vtt</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pipeline-connector"></div>
+
+                <!-- Step 3 -->
+                <div class="pipeline-step pipeline-step-disabled" id="pstep-enhance">
+                  <div class="pipeline-step-header">
+                    <div class="pipeline-step-left">
+                      <span class="pipeline-step-num">03</span>
+                      <div class="pipeline-step-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8m-4 8v-6m-4 6v-4m16 4v-10m4 10v-5"/></svg>
+                      </div>
+                      <div>
+                        <div class="pipeline-step-name">Audio Mastering</div>
+                        <div class="pipeline-step-desc">Denoise vocals, apply EQ and loudness normalization</div>
+                      </div>
+                    </div>
+                    <label class="pipe-toggle">
+                      <input type="checkbox" id="pipe-enhance" onchange="updatePipelineStepState('pstep-enhance', this.checked)">
+                      <span class="pipe-toggle-track"></span>
+                    </label>
+                  </div>
+                  <div class="pipeline-step-config">
+                    <div class="pipe-config-row">
+                      <span>Profile</span>
+                      <select id="pipe-enhance-profile">
+                        <option value="voice">Voice Clarity</option>
+                        <option value="podcast">Podcast (Heavy NR)</option>
+                        <option value="music">Music Master</option>
+                      </select>
+                    </div>
+                    <div class="pipe-config-row">
+                      <span>Loudness</span>
+                      <select id="pipe-enhance-lufs">
+                        <option value="-16">-16 LUFS (Podcast)</option>
+                        <option value="-14">-14 LUFS (YouTube)</option>
+                        <option value="-23">-23 LUFS (Broadcast)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pipeline-connector"></div>
+
+                <!-- Step 4 -->
+                <div class="pipeline-step" id="pstep-convert">
+                  <div class="pipeline-step-header">
+                    <div class="pipeline-step-left">
+                      <span class="pipeline-step-num">04</span>
+                      <div class="pipeline-step-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                      </div>
+                      <div>
+                        <div class="pipeline-step-name">Container Transcode</div>
+                        <div class="pipeline-step-desc">Re-encode and mux into final output format</div>
+                      </div>
+                    </div>
+                    <label class="pipe-toggle">
+                      <input type="checkbox" id="pipe-convert" checked onchange="updatePipelineStepState('pstep-convert', this.checked)">
+                      <span class="pipe-toggle-track"></span>
+                    </label>
+                  </div>
+                  <div class="pipeline-step-config">
+                    <div class="pipe-config-row">
+                      <span>Codec</span>
+                      <select id="pipe-convert-codec">
+                        <option value="h264">H.264 / MP4 (Universal)</option>
+                        <option value="h265">H.265 / MP4 (Efficient)</option>
+                        <option value="prores">ProRes / MOV (Editing)</option>
+                        <option value="dnxhd">DNxHD / MOV (Avid)</option>
+                      </select>
+                    </div>
+                    <div class="pipe-config-row">
+                      <span>Resolution</span>
+                      <select id="pipe-convert-res">
+                        <option value="source">Keep Source</option>
+                        <option value="1080p">1080p</option>
+                        <option value="720p">720p</option>
+                        <option value="4k">4K UHD</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="pipeline-run-row">
+                <span class="pipeline-step-count" id="pipeline-active-count">3 of 4 steps active</span>
+                <button class="btn btn-tab-run" onclick="runSimulatedTask('pipeline')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Execute Pipeline
+                </button>
               </div>
             </div>
-
           </div>
 
           <!-- Bottom Console/Log Area -->

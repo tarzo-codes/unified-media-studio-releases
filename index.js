@@ -43,6 +43,28 @@ function toggleFolder(element) {
   }
 }
 
+// ── Pipeline Step Toggle ───────────────────────────────────────────────────────
+function updatePipelineStepState(stepId, isEnabled) {
+  const step = document.getElementById(stepId);
+  if (!step) return;
+  if (isEnabled) {
+    step.classList.remove('pipeline-step-disabled');
+  } else {
+    step.classList.add('pipeline-step-disabled');
+  }
+  updatePipelineCount();
+}
+
+function updatePipelineCount() {
+  const ids = ['pipe-silence', 'pipe-transcribe', 'pipe-enhance', 'pipe-convert'];
+  const active = ids.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.checked;
+  }).length;
+  const label = document.getElementById('pipeline-active-count');
+  if (label) label.textContent = `${active} of ${ids.length} steps active`;
+}
+
 // ── Tab Switching ─────────────────────────────────────────────────────────────
 function switchTab(btnElement, tabId) {
   if (isProcessing) return;

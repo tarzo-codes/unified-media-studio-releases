@@ -1,0 +1,8 @@
+# IDE and System files
+.vscode/
+.idea/
+.qtcreator/
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log

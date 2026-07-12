@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unified Media Studio — Professional Offline Media Suite</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Top Glass Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-area">
+        <div class="logo-circle">
+          <span>UMS</span>
+        </div>
+        <span class="logo-text">Unified Media Studio</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#simulator">Interactive Demo</a>
+        <a href="#downloads" class="btn-nav-download">Get Stable Builds</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="hero-container">
+      <div class="badge">v1.1.5-alpha — Public Release</div>
+      <h1>Local Media Processing.<br><span class="gradient-text">Zero Cloud Dependency.</span></h1>
+      <p class="hero-subtitle">
+        A professional, lightning-fast media editing and pipeline suite. Remove silences, transcribe with Whisper AI, enhance audio, and batch convert formats locally on your own hardware.
+      </p>
+      <div class="hero-actions">
+        <a href="#downloads" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Stable Builds
+        </a>
+        <a href="#simulator" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Try Live Simulator
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Simulator Section -->
+  <section id="simulator" class="section-simulator">
+    <div class="section-header">
+      <h2>Interactive Live Simulator</h2>
+      <p>Try the desktop interface directly in your browser. Drag or select a mock file, tweak parameters, and watch the processing pipeline run locally.</p>
+    </div>
+
+    <!-- Simulator Mockup Container -->
+    <div class="desktop-mockup">
+      <!-- Title Bar -->
+      <div class="title-bar">
+        <div class="window-controls">
+          <span class="control-dot close"></span>
+          <span class="control-dot minimize"></span>
+          <span class="control-dot maximize"></span>
+        </div>
+        <div class="window-title">Unified Media Studio v1.1.5-alpha</div>
+        <div class="window-spacer"></div>
+      </div>
+
+      <!-- Main Application Layout -->
+      <div class="app-layout">
+        <!-- Sidebar File Browser -->
+        <aside class="app-sidebar">
+          <div class="sidebar-header">
+            <h3>🗂️ File Browser</h3>
+            <span class="auto-refresh-badge">30s Auto</span>
+          </div>
+          <div class="file-tree">
+            <div class="tree-item folder" onclick="toggleFolder(this)">
+              <span class="arrow">▼</span> 📁 workspace_media
+            </div>
+            <div class="tree-children show">
+              <div class="tree-item file" onclick="selectFile(this, 'podcast_raw.wav')">🔊 podcast_raw.wav</div>
+              <div class="tree-item file" onclick="selectFile(this, 'interview_final.mp4')">🎬 interview_final.mp4</div>
+              <div class="tree-item file" onclick="selectFile(this, 'voice_memo_03.m4a')">🔊 voice_memo_03.m4a</div>
+              <div class="tree-item file" onclick="selectFile(this, 'vlog_editing_draft.mov')">🎬 vlog_editing_draft.mov</div>
+            </div>
+          </div>
+          <div class="active-files-box">
+            <h4>Active Processing Queue</h4>
+            <ul id="active-queue-list">
+              <li class="empty-state-text">No files selected. Click a file above to add to queue.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="app-main">
+          <!-- Tab Headers -->
+          <div class="tab-headers">
+            <button class="tab-btn active" onclick="switchTab(this, 'tab-silence')">✂️ Silence Remover</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-transcribe')">🎙️ AI Transcriber</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-convert')">🎬 Media Converter</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-enhance')">🔊 Audio Editor</button>
+          </div>
+
+          <!-- Tab Content Cards -->
+          <div class="tab-content-container">
+            
+            <!-- 1. Silence Remover Tab -->
+            <div id="tab-silence" class="tab-content active">
+              <div class="tab-content-header">
+                <h4>Silence Remover & Auto-Trim</h4>
+                <p>Trim silent sections with fast, hardware-accelerated processing.</p>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <label for="silence-thresh">Silence Threshold:</label>
+                  <select id="silence-thresh">
+                    <option value="-35">-35.00 dB (Recommended)</option>
+                    <option value="-40">-40.00 dB (Aggressive)</option>
+                    <option value="-30">-30.00 dB (Light)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="silence-mode">Export Mode:</label>
+                  <select id="silence-mode">
+                    <option value="both">Video + XML (Resolve/Premiere EDL)</option>
+                    <option value="video">Video Only (Fully rendered clip)</option>
+                    <option value="xml">XML Only (Cut points list)</option>
+                  </select>
+                </div>
+                <button class="btn btn-tab-run" onclick="runSimulatedTask('silence')">Run Silence Removal</button>
+              </div>
+            </div>
+
+            <!-- 2. AI Transcriber Tab -->
+            <div id="tab-transcribe" class="tab-content">
+              <div class="tab-content-header">
+                <h4>Offline AI Transcription</h4>
+                <p>Transcribe vocal tracks locally using OpenAI Whisper models.</p>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <label for="whisper-model">Whisper Model:</label>
+                  <select id="whisper-model">
+                    <option value="base">Base Model (Fast & Accurate)</option>
+                    <option value="tiny">Tiny Model (Ultra Fast)</option>
+                    <option value="small">Small Model (Better for accents)</option>
+                    <option value="large">Large-V3 Model (Premium accuracy)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="transcribe-chapters">Summarize Chapters:</label>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="transcribe-chapters" checked>
+                    <span>Use Ollama local LLM for summaries</span>
+                  </div>
+                </div>
+                <button class="btn btn-tab-run" onclick="runSimulatedTask('transcribe')">Start Local Transcription</button>
+              </div>
+            </div>
+
+            <!-- 3. Media Converter Tab -->
+            <div id="tab-convert" class="tab-content">
+              <div class="tab-content-header">
+                <h4>Format Preset Converter</h4>
+                <p>Convert video/audio into professional editing masters or compressed web links.</p>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <label for="convert-preset">Output Format Preset:</label>
+                  <select id="convert-preset">
+                    <option value="dnxhd">🎬 DNxHD — Editing Master (.mov)</option>
+                    <option value="mp4_hq">🎬 MP4 H.264 — High Quality (.mp4)</option>
+                    <option value="mp4_compact">📱 MP4 H.265 — Compact (.mp4)</option>
+                    <option value="wav_pcm">🎧 WAV — Lossless PCM stereo (.wav)</option>
+                    <option value="mp3_320">🎵 MP3 320 kbps — Studio Stereo (.mp3)</option>
+                  </select>
+                </div>
+                <button class="btn btn-tab-run" onclick="runSimulatedTask('convert')">Convert Media Format</button>
+              </div>
+            </div>
+
+            <!-- 4. Audio Editor Tab -->
+            <div id="tab-enhance" class="tab-content">
+              <div class="tab-content-header">
+                <h4>Mastering & Noise Reduction</h4>
+                <p>Denoise vocals, adjust equalizer gain, and master tracks.</p>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <label for="enhance-preset">Mastering Preset:</label>
+                  <select id="enhance-preset">
+                    <option value="clarity">🎙️ Voice Clarity (Denoise + EQ Boost)</option>
+                    <option value="heavy_nr">🎙️ Podcast Voice (Heavy Denoise)</option>
+                    <option value="music">🎵 Music Master (Limiter + Reverb)</option>
+                  </select>
+                </div>
+                <button class="btn btn-tab-run" onclick="runSimulatedTask('enhance')">Apply Audio enhancement</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Console/Log Area -->
+          <div class="app-console">
+            <div class="console-header">
+              <span>🖥️ System Console Logger</span>
+              <span class="console-status" id="task-status">System Idle</span>
+            </div>
+            <div class="console-output" id="console-log-lines">
+              <div class="log-line system">[SYSTEM] Ready. Select files from the sidebar browser to get started.</div>
+            </div>
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="sim-progress-bar"></div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stable Builds Section -->
+  <section id="downloads" class="section-downloads">
+    <div class="section-header">
+      <h2>Stable Build Downloads</h2>
+      <p>Download natively compiled, stand-alone releases for your distribution. Every package executes fully offline without telemetry.</p>
+    </div>
+
+    <!-- Download Grid -->
+    <div class="download-grid">
+      <!-- Windows Setup -->
+      <div class="download-card">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="platform-icon">🪟</span>
+          <h3>Windows Installer</h3>
+        </div>
+        <p class="card-desc">Recommended for most users. Standard installer with registry hooks, shortcut icons, and automatic dependency installation.</p>
+        <div class="card-meta">
+          <span>x64 Architecture</span>
+          <span>Size: 22.1 MB</span>
+        </div>
+        <a href="downloads/UnifiedMediaStudio_v1.1.5-alpha-Setup-Windows.exe" class="btn btn-download">
+          Download Setup.exe
+        </a>
+      </div>
+
+      <!-- Windows Portable -->
+      <div class="download-card">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="platform-icon">📦</span>
+          <h3>Windows Portable</h3>
+        </div>
+        <p class="card-desc">Self-contained directory. Extract anywhere and launch without setup or administrator rights. Great for production suites.</p>
+        <div class="card-meta">
+          <span>x64 Architecture</span>
+          <span>Size: 44.2 MB</span>
+        </div>
+        <a href="downloads/UnifiedMediaStudio_v1.1.5-alpha-Portable.zip" class="btn btn-download">
+          Download Portable.zip
+        </a>
+      </div>
+
+      <!-- Ubuntu / Debian -->
+      <div class="download-card">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="platform-icon">🐧</span>
+          <h3>Ubuntu / Debian</h3>
+        </div>
+        <p class="card-desc">Standard Debian package compiled natively on Ubuntu. Installs desktop icons and launches via unified-media-studio CLI commands.</p>
+        <div class="card-meta">
+          <span>AMD64 architecture</span>
+          <span>Size: 768 KB</span>
+        </div>
+        <a href="downloads/UnifiedMediaStudio_v1.1.5-alpha-Linux-x64.deb" class="btn btn-download">
+          Download .deb package
+        </a>
+      </div>
+
+      <!-- Fedora / RPM -->
+      <div class="download-card">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="platform-icon">🐧</span>
+          <h3>Fedora / RPM</h3>
+        </div>
+        <p class="card-desc">Native RPM package compiled specifically for Fedora. Includes menu launchers and registers with DNF dependency managers.</p>
+        <div class="card-meta">
+          <span>x86_64 architecture</span>
+          <span>Size: 756 KB</span>
+        </div>
+        <a href="downloads/UnifiedMediaStudio_v1.1.5-alpha-Linux-x64.rpm" class="btn btn-download">
+          Download .rpm package
+        </a>
+      </div>
+
+      <!-- Arch Linux -->
+      <div class="download-card">
+        <div class="card-glow"></div>
+        <div class="card-header">
+          <span class="platform-icon">🐧</span>
+          <h3>Arch Linux</h3>
+        </div>
+        <p class="card-desc">Arch-compatible Zstandard-compressed tarball package. Installs natively and maps system Qt6 bindings correctly.</p>
+        <div class="card-meta">
+          <span>x86_64 architecture</span>
+          <span>Size: 968 KB</span>
+        </div>
+        <a href="downloads/UnifiedMediaStudio_v1.1.5-alpha-Arch-x64.pkg.tar.zst" class="btn btn-download">
+          Download .tar.zst
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Troubleshooting Section -->
+  <section class="section-trouble">
+    <div class="section-header">
+      <h2>Need Help? Troubleshooting Guide</h2>
+      <p>Quick workarounds for common issues encountered during testing, especially in minimal container configurations.</p>
+    </div>
+
+    <div class="accordion-container">
+      <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAccordion(this)">
+          <span>❓ Fonts are displaying as empty squares (tofu) in Arch/Ubuntu WSL</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>WSL Linux instances are minimal containers and do not bundle fonts by default. Run this inside your distro to install TrueType fonts:</p>
+          <pre><code># Arch Linux:
+sudo pacman -S --needed --noconfirm ttf-dejavu fontconfig
+
+# Ubuntu/Debian:
+sudo apt-get install -y fonts-dejavu fontconfig</code></pre>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAccordion(this)">
+          <span>❓ The application starts but nothing displays on the screen</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>This is caused by graphics driver/Vulkan translation conflicts in WSLg. You can force software rendering to bypass the GPU interface:</p>
+          <pre><code>LIBGL_ALWAYS_SOFTWARE=1 unified-media-studio</code></pre>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAccordion(this)">
+          <span>❓ Audio warnings ("pw.conf can't load config client.conf")</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>These warnings are standard driver messages from PipeWire inside WSL. They do not affect the processing capabilities and can be safely ignored.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Tech Resolve. Unified Media Studio is privately maintained. All rights reserved.</p>
+      <div class="obfuscated-repos">
+        <span>Dev Branch ID: aHR0cHM6Ly9naXRodWIuY29tL3RhcnpvLWNvZGVzL3VuaWZpZWQtbWVkaWEtc3R1ZGlv</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="index.js"></script>
+</body>
+</html>

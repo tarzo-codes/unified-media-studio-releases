@@ -20,11 +20,18 @@
         <img src="logo.jpg" alt="UMS Logo" class="nav-logo-img">
         <span class="logo-text">Unified Media Studio</span>
       </div>
-      <div class="nav-links">
-        <a href="#simulator">Interactive Demo</a>
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links" id="nav-links-menu">
+        <a href="#simulator" onclick="closeMobileMenu()">Interactive Demo</a>
         <a href="docs.html">Documentation</a>
-        <a href="#feedback">Issues & Feedback</a>
-        <a href="#downloads" class="btn-nav-download">Get Test Builds</a>
+        <a href="#feedback" onclick="closeMobileMenu()">Issues & Feedback</a>
+        <a href="#downloads" class="btn-nav-download" onclick="closeMobileMenu()">Get Test Builds</a>
       </div>
     </div>
   </nav>

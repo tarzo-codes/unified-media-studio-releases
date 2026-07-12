@@ -185,11 +185,18 @@
           <span class="logo-text">Unified Media Studio</span>
         </a>
       </div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#simulator">Interactive Demo</a>
-        <a href="index.html#downloads">Downloads</a>
-        <a href="index.html#feedback">Issues & Feedback</a>
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links" id="nav-links-menu">
+        <a href="index.html" onclick="closeMobileMenu()">Home</a>
+        <a href="index.html#simulator" onclick="closeMobileMenu()">Interactive Demo</a>
+        <a href="index.html#downloads" onclick="closeMobileMenu()">Downloads</a>
+        <a href="index.html#feedback" onclick="closeMobileMenu()">Issues & Feedback</a>
       </div>
     </div>
   </nav>
@@ -382,6 +389,16 @@ sudo dnf install -y dejavu-sans-fonts fontconfig</code></pre>
         el.classList.remove('active');
       });
       element.classList.add('active');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-links-menu');
+      menu.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('nav-links-menu');
+      menu.classList.remove('active');
     }
   </script>
 </body>

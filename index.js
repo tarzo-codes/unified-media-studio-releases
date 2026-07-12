@@ -283,3 +283,14 @@ ${bodyText}
   logToConsole(`[SYSTEM] Issue template generated. Redirecting to GitHub Issues...`, 'system');
 }
 
+// ── Mobile Menu Toggles ───────────────────────────────────────────────────────
+function toggleMobileMenu() {
+  const menu = document.getElementById('nav-links-menu');
+  menu.classList.toggle('active');
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById('nav-links-menu');
+  menu.classList.remove('active');
+}
+

@@ -142,6 +142,7 @@ function runSimulatedTask(taskType) {
 }
 
 function getOutputExtensionForTask(taskType) {
+  if (taskType === 'pipeline') return '_pipeline.mp4';
   if (taskType === 'silence') {
     const mode = document.getElementById('silence-mode').value;
     return mode === 'xml' ? '.xml' : '_cut.mp4';
@@ -229,6 +230,46 @@ function getLogsForTask(taskType, filename) {
       { text: "Applying noise-reduction filter coefficient matrices...", type: 'out' },
       { text: "Writing uncompressed mastered WAV stream...", type: 'out' }
     ];
+  }
+
+  if (taskType === 'pipeline') {
+    const runSilence = document.getElementById('pipe-silence').checked;
+    const runTranscribe = document.getElementById('pipe-transcribe').checked;
+    const runEnhance = document.getElementById('pipe-enhance').checked;
+    const runConvert = document.getElementById('pipe-convert').checked;
+
+    const list = [...commonHeader];
+    
+    if (runSilence) {
+      list.push(
+        { text: "[PIPELINE] STEP 1: Executing Silence Auto-Trim...", type: 'system' },
+        { text: `[CMD] auto-editor "${filename}" --threshold -35dB --margin 0.2s`, type: 'cmd' },
+        { text: "  -> Analyzing decibels... Trimmed 11 silent sections.", type: 'out' }
+      );
+    }
+    if (runTranscribe) {
+      list.push(
+        { text: "[PIPELINE] STEP 2: Executing OpenAI Whisper Transcription...", type: 'system' },
+        { text: `[CMD] whisper "${filename}" --model base --device cuda`, type: 'cmd' },
+        { text: "  -> Transcribed audio. Writing subtitles (.srt)...", type: 'out' }
+      );
+    }
+    if (runEnhance) {
+      list.push(
+        { text: "[PIPELINE] STEP 3: Executing Voice Clarity Mastering...", type: 'system' },
+        { text: `[CMD] ffmpeg -i "${filename}" -af lowpass=f=3000,highpass=f=200`, type: 'cmd' },
+        { text: "  -> High-pass and Low-pass filters successfully compiled.", type: 'out' }
+      );
+    }
+    if (runConvert) {
+      list.push(
+        { text: "[PIPELINE] STEP 4: Executing Final Container Transcode...", type: 'system' },
+        { text: `[CMD] ffmpeg -i "${filename}" -c:v h264_nvenc -c:a aac /workspace_media/output_pipeline`, type: 'cmd' },
+        { text: "  -> Multi-stream multiplexing complete.", type: 'out' }
+      );
+    }
+    
+    return list;
   }
 
   return [];

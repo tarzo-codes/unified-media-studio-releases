@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — Unified Media Studio</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Premium documentation specific styles to override base layout */
+    .docs-layout {
+      max-width: 1200px;
+      margin: 100px auto 60px auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 40px;
+    }
+    
+    .docs-sidebar {
+      width: 280px;
+      position: sticky;
+      top: 100px;
+      height: calc(100vh - 140px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border-color);
+      padding-right: 20px;
+    }
+    
+    .docs-sidebar h3 {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+    
+    .docs-sidebar h3:first-child {
+      margin-top: 0;
+    }
+    
+    .docs-sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .docs-sidebar a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.15s ease;
+      display: block;
+      padding: 4px 0;
+    }
+    
+    .docs-sidebar a:hover {
+      color: white;
+    }
+    
+    .docs-sidebar a.active {
+      color: var(--accent-purple-hover);
+      font-weight: 600;
+    }
+    
+    .docs-content {
+      flex: 1;
+      max-width: 800px;
+    }
+    
+    .docs-section {
+      margin-bottom: 60px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 40px;
+    }
+    
+    .docs-section:last-child {
+      border-bottom: none;
+    }
+    
+    .docs-section h2 {
+      font-size: 28px;
+      color: white;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .docs-section p {
+      font-size: 15px;
+      color: #e5e7eb; /* Higher visibility white-grey */
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    
+    .docs-section ul, .docs-section ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+      color: #e5e7eb;
+    }
+    
+    .docs-section li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    
+    .docs-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .docs-section th, .docs-section td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .docs-section th {
+      background: #171f33;
+      color: white;
+      font-weight: 600;
+    }
+    
+    .docs-section tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .docs-section code {
+      font-family: var(--font-mono);
+      background: #181f33;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--accent-purple-hover);
+    }
+    
+    .docs-section pre {
+      background: #090c14;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    
+    .docs-section pre code {
+      padding: 0;
+      background: none;
+      color: #e5e7eb;
+    }
+    
+    .tip-box {
+      background: rgba(139, 92, 246, 0.1);
+      border-left: 4px solid var(--accent-purple);
+      padding: 16px;
+      border-radius: 4px 8px 8px 4px;
+      margin: 20px 0;
+    }
+    
+    .tip-box p {
+      margin: 0;
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Glass Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-area">
+        <a href="index.html" style="display: flex; align-items: center; gap: 12px;">
+          <img src="logo.jpg" alt="UMS Logo" class="nav-logo-img">
+          <span class="logo-text">Unified Media Studio</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#simulator">Interactive Demo</a>
+        <a href="index.html#downloads">Downloads</a>
+        <a href="index.html#feedback">Issues & Feedback</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Docs Layout -->
+  <div class="docs-layout">
+    <!-- Sidebar Index -->
+    <aside class="docs-sidebar">
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="#overview" class="active" onclick="activateLink(this)">Overview</a></li>
+        <li><a href="#install" onclick="activateLink(this)">Installation</a></li>
+      </ul>
+      
+      <h3>Core Modules</h3>
+      <ul>
+        <li><a href="#silence" onclick="activateLink(this)">Silence Remover</a></li>
+        <li><a href="#transcriber" onclick="activateLink(this)">AI Transcriber</a></li>
+        <li><a href="#converter" onclick="activateLink(this)">Media Converter</a></li>
+        <li><a href="#audio" onclick="activateLink(this)">Audio Editor</a></li>
+        <li><a href="#pipeline" onclick="activateLink(this)">Bulk Pipeline</a></li>
+      </ul>
+
+      <h3>Troubleshooting</h3>
+      <ul>
+        <li><a href="#trouble" onclick="activateLink(this)">Troubleshooting Guide</a></li>
+      </ul>
+    </aside>
+
+    <!-- Content Sections -->
+    <main class="docs-content">
+      
+      <!-- Section 1: Overview -->
+      <section id="overview" class="docs-section">
+        <h2>Overview</h2>
+        <p>Unified Media Studio is a professional, offline-first media processing suite built using Qt6 and C++. It aims to unify powerful backend libraries like FFmpeg, auto-editor, and OpenAI Whisper into a responsive, local desktop application with zero cloud tracking or telemetry.</p>
+        <p>Whether you need to edit audio waveforms, transcribe podcast episodes, convert media pipelines in bulk, or trim silences instantly, Unified Media Studio handles it natively on your processor or GPU.</p>
+        
+        <div class="tip-box">
+          <p><strong>Offline First:</strong> Unified Media Studio processes all computations entirely on your local machine. No API keys, server tokens, or network requests are ever dispatched during processing.</p>
+        </div>
+      </section>
+
+      <!-- Section 2: Installation -->
+      <section id="install" class="docs-section">
+        <h2>Installation Guide</h2>
+        <p>Unified Media Studio is available as packaged builds for both Windows and popular Linux distributions. Please read the instructions below to configure the app on your environment.</p>
+        
+        <h3>Windows</h3>
+        <p>Select either the setup installer or portable zip from the downloads section:</p>
+        <ul>
+          <li><strong>Setup Installer (Recommended):</strong> Runs a standard installation wizard. Offers an automated option to download and install core dependencies like Python and FFmpeg on first launch.</li>
+          <li><strong>Portable Zip:</strong> Self-contained directory structure. Extract the directory anywhere and double-click <code>windows/Launch.bat</code> to launch the studio.</li>
+        </ul>
+
+        <h3>Linux Distributions</h3>
+        <p>Ensure that standard packages (like Python and FFmpeg) are pre-installed via your system's package manager before deploying the application.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Distribution</th>
+              <th>Prerequisites Command</th>
+              <th>Installation Command</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ubuntu / Debian</td>
+              <td><code>sudo apt install ffmpeg python3 python3-pip</code></td>
+              <td><code>sudo dpkg -i UnifiedMediaStudio_v1.1.5-alpha-Linux-x64.deb</code></td>
+            </tr>
+            <tr>
+              <td>Fedora / RedHat</td>
+              <td><code>sudo dnf install ffmpeg python3</code></td>
+              <td><code>sudo dnf install UnifiedMediaStudio_v1.1.5-alpha-Linux-x64.rpm</code></td>
+            </tr>
+            <tr>
+              <td>Arch Linux</td>
+              <td><code>sudo pacman -S ffmpeg python</code></td>
+              <td><code>sudo pacman -U UnifiedMediaStudio_v1.1.5-alpha-Arch-x64.pkg.tar.zst</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 3: Silence Remover -->
+      <section id="silence" class="docs-section">
+        <h2>✂️ Silence Remover</h2>
+        <p>The Silence Remover parses your video and audio tracks, analyzes decibel levels, and trims silent parts with absolute precision.</p>
+        <p><strong>Configurability:</strong></p>
+        <ul>
+          <li><strong>Silence Threshold:</strong> Set the decibel volume range to classify as silence (Default: <code>-35.00 dB</code>).</li>
+          <li><strong>Min Silence Duration:</strong> The minimum length of time in seconds that a quiet section must last to be cut.</li>
+          <li><strong>Padding:</strong> Keeps a short pad before and after cut points to ensure vocal inflections aren't abruptly trimmed.</li>
+        </ul>
+        <p><strong>Export Modes:</strong></p>
+        <ol>
+          <li><strong>Video + XML:</strong> Outputs a compiled trimmed media file along with an Edit Decision List (EDL) XML. Perfect for import into Resolve or Premiere.</li>
+          <li><strong>Video Only:</strong> Instantly encodes and outputs only the trimmed video file.</li>
+          <li><strong>XML Only:</strong> Skips encoding entirely and exports only the cut-point XML file (completed in seconds).</li>
+        </ol>
+      </section>
+
+      <!-- Section 4: AI Transcriber -->
+      <section id="transcriber" class="docs-section">
+        <h2>🎙️ AI Transcriber</h2>
+        <p>Offline audio transcription powered by OpenAI Whisper.</p>
+        <ul>
+          <li><strong>Whisper Models:</strong> Choose weights from <code>tiny</code> (super fast, low memory) up to <code>large-v3</code> (industry-standard accuracy).</li>
+          <li><strong>Device Selector:</strong> Choose <code>CPU</code> or CUDA-accelerated <code>GPU</code> for transcription. GPU execution requires Nvidia CUDA packages.</li>
+          <li><strong>Subtitle Export:</strong> Auto-generates SubRip subtitle tracks (<code>.srt</code>) and structured JSON transcript objects.</li>
+          <li><strong>Ollama Integration:</strong> Chains Whisper transcripts into a local Ollama LLM to summarize key chapters, create podcast titles, or bullet-point discussions natively.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Media Converter -->
+      <section id="converter" class="docs-section">
+        <h2>🎬 Media Converter</h2>
+        <p>Quickly convert media files using high-fidelity conversion profiles or configure custom overrides.</p>
+        <ul>
+          <li><strong>DNxHD — Editing Master:</strong> Renders lossless-quality video files with PCM audio, optimized for editing in Premiere or Resolve without CPU decoding strain.</li>
+          <li><strong>MP4 H.264 / H.265:</strong> High-efficiency video encoders. Great for mobile uploads or storage compression.</li>
+          <li><strong>Audio Presets:</strong> Export uncompressed 16-bit stereo WAVs or standard 320 kbps MP3 files.</li>
+          <li><strong>Replace Audio Track:</strong> Strip existing video audio and multiplex a new audio file directly onto the timeline without re-encoding the video track.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6: Audio Editor -->
+      <section id="audio" class="docs-section">
+        <h2>🔊 Audio Editor</h2>
+        <p>Features an interactive filter chain and DAW waveform analyzer.</p>
+        <ul>
+          <li><strong>Waveform Noise Profile Capture:</strong> Select a noise-only region on the visual waveform using your mouse cursor. Click "Capture Profile" to use that sample as a noise filter matrix coefficient.</li>
+          <li><strong>Filters:</strong> Real-time control for Gain, Denoise strength, High/Low Pass Equalization, Compression thresholds, Limiter ceiling, and Reverb space.</li>
+          <li><strong>Vocal Presets:</strong> Predefined mastering chains like <em>Voice Clarity</em> and <em>Podcast Heavy Noise Reduction</em>.</li>
+        </ul>
+      </section>
+
+      <!-- Section 7: Bulk Pipeline -->
+      <section id="pipeline" class="docs-section">
+        <h2>📋 Bulk Pipeline</h2>
+        <p>The Bulk Processing Pipeline lets you orchestrate complex media flows on entire directories of files sequentially.</p>
+        <p><strong>How to build a pipeline:</strong></p>
+        <ol>
+          <li>Drag processing blocks (Silence Removal, Audio Enhance, Convert, Transcribe) from the tool list into the pipeline queue.</li>
+          <li>Reorder steps visually.</li>
+          <li>Click the settings gear icon on each step to configure independent parameters for that module.</li>
+          <li>Click "Execute Pipeline" to run the queued operations batch-style across the staged files list.</li>
+        </ol>
+      </section>
+
+      <!-- Section 8: Troubleshooting Guide -->
+      <section id="trouble" class="docs-section">
+        <h2>Troubleshooting Guide</h2>
+        <p>Review these solutions for common setup issues, particularly when deploying inside WSL or container systems.</p>
+        
+        <h3>1. Missing Fonts / Blank UI Text (Tofu Squares)</h3>
+        <p>If labels inside the application display as empty boxes (<code>□□□□</code>), your Linux instance lacks a default font package. Run the corresponding command to install DejaVu glyph layouts:</p>
+        <pre><code># Arch Linux:
+sudo pacman -S --needed --noconfirm ttf-dejavu fontconfig
+
+# Ubuntu/Debian:
+sudo apt-get install -y fonts-dejavu fontconfig
+
+# Fedora:
+sudo dnf install -y dejavu-sans-fonts fontconfig</code></pre>
+
+        <h3>2. Wayland/WSLg Window Fails to Render</h3>
+        <p>On some Windows hardware, WSLg's GPU Vulkan/OpenGL translation wrapper will conflict with dynamic Qt drivers, causing the app window to crash or remain hidden on startup.</p>
+        <p><strong>Solution:</strong> Force software-only graphics rendering by setting the environment variable:</p>
+        <pre><code>LIBGL_ALWAYS_SOFTWARE=1 unified-media-studio</code></pre>
+
+        <h3>3. PipeWire Config Warnings</h3>
+        <p>Warnings like <code>pw.conf | can't load config client.conf</code> are standard driver messages from WSL's audio stack. They do not affect media processing functionality and can be safely ignored.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Tech Resolve. Unified Media Studio is privately maintained. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function activateLink(element) {
+      document.querySelectorAll('.docs-sidebar a').forEach(el => {
+        el.classList.remove('active');
+      });
+      element.classList.add('active');
+    }
+  </script>
+</body>
+</html>

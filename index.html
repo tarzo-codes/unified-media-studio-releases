@@ -76,18 +76,18 @@
         <!-- Sidebar File Browser -->
         <aside class="app-sidebar">
           <div class="sidebar-header">
-            <h3>🗂️ File Browser</h3>
+            <h3><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>File Browser</h3>
             <span class="auto-refresh-badge">30s Auto</span>
           </div>
           <div class="file-tree">
             <div class="tree-item folder" onclick="toggleFolder(this)">
-              <span class="arrow">▼</span> 📁 workspace_media
+              <span class="arrow">▼</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>workspace_media
             </div>
             <div class="tree-children show">
-              <div class="tree-item file" onclick="selectFile(this, 'podcast_raw.wav')">🔊 podcast_raw.wav</div>
-              <div class="tree-item file" onclick="selectFile(this, 'interview_final.mp4')">🎬 interview_final.mp4</div>
-              <div class="tree-item file" onclick="selectFile(this, 'voice_memo_03.m4a')">🔊 voice_memo_03.m4a</div>
-              <div class="tree-item file" onclick="selectFile(this, 'vlog_editing_draft.mov')">🎬 vlog_editing_draft.mov</div>
+              <div class="tree-item file" onclick="selectFile(this, 'podcast_raw.wav')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>podcast_raw.wav</div>
+              <div class="tree-item file" onclick="selectFile(this, 'interview_final.mp4')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>interview_final.mp4</div>
+              <div class="tree-item file" onclick="selectFile(this, 'voice_memo_03.m4a')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>voice_memo_03.m4a</div>
+              <div class="tree-item file" onclick="selectFile(this, 'vlog_editing_draft.mov')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>vlog_editing_draft.mov</div>
             </div>
           </div>
           <div class="active-files-box">
@@ -102,10 +102,10 @@
         <main class="app-main">
           <!-- Tab Headers -->
           <div class="tab-headers">
-            <button class="tab-btn active" onclick="switchTab(this, 'tab-silence')">✂️ Silence Remover</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab-transcribe')">🎙️ AI Transcriber</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab-convert')">🎬 Media Converter</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab-enhance')">🔊 Audio Editor</button>
+            <button class="tab-btn active" onclick="switchTab(this, 'tab-silence')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="9.8" y1="8.2" x2="21" y2="19.4"/><line x1="21" y1="4.6" x2="9.8" y2="15.8"/></svg>Silence Remover</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-transcribe')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>AI Transcriber</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-convert')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>Media Converter</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-enhance')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M12 20v-8m-4 8v-6m-4 6v-4m16 4v-10m4 10v-5"/></svg>Audio Editor</button>
           </div>
 
           <!-- Tab Content Cards -->
@@ -175,11 +175,11 @@
                 <div class="form-row">
                   <label for="convert-preset">Output Format Preset:</label>
                   <select id="convert-preset">
-                    <option value="dnxhd">🎬 DNxHD — Editing Master (.mov)</option>
-                    <option value="mp4_hq">🎬 MP4 H.264 — High Quality (.mp4)</option>
-                    <option value="mp4_compact">📱 MP4 H.265 — Compact (.mp4)</option>
-                    <option value="wav_pcm">🎧 WAV — Lossless PCM stereo (.wav)</option>
-                    <option value="mp3_320">🎵 MP3 320 kbps — Studio Stereo (.mp3)</option>
+                    <option value="dnxhd">DNxHD — Editing Master (.mov)</option>
+                    <option value="mp4_hq">MP4 H.264 — High Quality (.mp4)</option>
+                    <option value="mp4_compact">MP4 H.265 — Compact (.mp4)</option>
+                    <option value="wav_pcm">WAV — Lossless PCM stereo (.wav)</option>
+                    <option value="mp3_320">MP3 320 kbps — Studio Stereo (.mp3)</option>
                   </select>
                 </div>
                 <button class="btn btn-tab-run" onclick="runSimulatedTask('convert')">Convert Media Format</button>
@@ -196,9 +196,9 @@
                 <div class="form-row">
                   <label for="enhance-preset">Mastering Preset:</label>
                   <select id="enhance-preset">
-                    <option value="clarity">🎙️ Voice Clarity (Denoise + EQ Boost)</option>
-                    <option value="heavy_nr">🎙️ Podcast Voice (Heavy Denoise)</option>
-                    <option value="music">🎵 Music Master (Limiter + Reverb)</option>
+                    <option value="clarity">Voice Clarity (Denoise + EQ Boost)</option>
+                    <option value="heavy_nr">Podcast Voice (Heavy Denoise)</option>
+                    <option value="music">Music Master (Limiter + Reverb)</option>
                   </select>
                 </div>
                 <button class="btn btn-tab-run" onclick="runSimulatedTask('enhance')">Apply Audio enhancement</button>
@@ -210,7 +210,7 @@
           <!-- Bottom Console/Log Area -->
           <div class="app-console">
             <div class="console-header">
-              <span>🖥️ System Console Logger</span>
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>System Console Logger</span>
               <span class="console-status" id="task-status">System Idle</span>
             </div>
             <div class="console-output" id="console-log-lines">
@@ -239,7 +239,7 @@
       <div class="download-card">
         <div class="card-glow"></div>
         <div class="card-header">
-          <span class="platform-icon">🪟</span>
+          <span class="platform-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
           <h3>Windows Installer</h3>
         </div>
         <p class="card-desc">Recommended for most users. Standard installer with registry hooks, shortcut icons, and automatic dependency installation.</p>
@@ -256,7 +256,7 @@
       <div class="download-card">
         <div class="card-glow"></div>
         <div class="card-header">
-          <span class="platform-icon">📦</span>
+          <span class="platform-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></span>
           <h3>Windows Portable</h3>
         </div>
         <p class="card-desc">Self-contained directory. Extract anywhere and launch without setup or administrator rights. Great for production suites.</p>
@@ -273,7 +273,7 @@
       <div class="download-card">
         <div class="card-glow"></div>
         <div class="card-header">
-          <span class="platform-icon">🐧</span>
+          <span class="platform-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
           <h3>Ubuntu / Debian</h3>
         </div>
         <p class="card-desc">Standard Debian package compiled natively on Ubuntu. Installs desktop icons and launches via unified-media-studio CLI commands.</p>
@@ -290,7 +290,7 @@
       <div class="download-card">
         <div class="card-glow"></div>
         <div class="card-header">
-          <span class="platform-icon">🐧</span>
+          <span class="platform-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
           <h3>Fedora / RPM</h3>
         </div>
         <p class="card-desc">Native RPM package compiled specifically for Fedora. Includes menu launchers and registers with DNF dependency managers.</p>
@@ -307,7 +307,7 @@
       <div class="download-card">
         <div class="card-glow"></div>
         <div class="card-header">
-          <span class="platform-icon">🐧</span>
+          <span class="platform-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
           <h3>Arch Linux</h3>
         </div>
         <p class="card-desc">Arch-compatible Zstandard-compressed tarball package. Installs natively and maps system Qt6 bindings correctly.</p>
@@ -333,7 +333,7 @@
     <div class="accordion-container">
       <div class="accordion-item">
         <div class="accordion-title" onclick="toggleAccordion(this)">
-          <span>❓ Fonts are displaying as empty squares (tofu) in Arch/Ubuntu WSL</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px; color: var(--accent-purple-hover);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Fonts are displaying as empty squares (tofu) in Arch/Ubuntu WSL</span>
           <span class="accordion-arrow">▼</span>
         </div>
         <div class="accordion-content">
@@ -348,7 +348,7 @@ sudo apt-get install -y fonts-dejavu fontconfig</code></pre>
 
       <div class="accordion-item">
         <div class="accordion-title" onclick="toggleAccordion(this)">
-          <span>❓ The application starts but nothing displays on the screen</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px; color: var(--accent-purple-hover);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>The application starts but nothing displays on the screen</span>
           <span class="accordion-arrow">▼</span>
         </div>
         <div class="accordion-content">
@@ -359,7 +359,7 @@ sudo apt-get install -y fonts-dejavu fontconfig</code></pre>
 
       <div class="accordion-item">
         <div class="accordion-title" onclick="toggleAccordion(this)">
-          <span>❓ Audio warnings ("pw.conf can't load config client.conf")</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px; color: var(--accent-purple-hover);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Audio warnings ("pw.conf can't load config client.conf")</span>
           <span class="accordion-arrow">▼</span>
         </div>
         <div class="accordion-content">
@@ -380,9 +380,9 @@ sudo apt-get install -y fonts-dejavu fontconfig</code></pre>
         <div class="form-row">
           <label for="issue-type">Feedback Category:</label>
           <select id="issue-type" required>
-            <option value="bug">🐛 Bug Report</option>
-            <option value="feature">💡 Feature Request</option>
-            <option value="enhancement">⚡ Improvement / Optimization</option>
+            <option value="bug">Bug Report</option>
+            <option value="feature">Feature Request</option>
+            <option value="enhancement">Improvement / Optimization</option>
           </select>
         </div>
         

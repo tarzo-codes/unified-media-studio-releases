@@ -300,6 +300,36 @@ a {
   background: radial-gradient(100% 100% at bottom center, rgba(139, 92, 246, 0.03) 0%, transparent 100%);
 }
 
+.simulator-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 8px;
+  padding: 10px 20px;
+  max-width: 700px;
+  margin: 0 auto 28px auto;
+}
+
+.simulator-notice svg {
+  flex-shrink: 0;
+  color: var(--accent-purple-hover);
+}
+
+.simulator-notice a {
+  color: var(--accent-purple-hover);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.simulator-notice a:hover {
+  text-decoration: underline;
+}
+
 .desktop-mockup {
   max-width: 1000px;
   margin: 0 auto;

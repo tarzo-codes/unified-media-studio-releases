@@ -153,9 +153,11 @@ a {
   border: none;
   color: var(--text-primary);
   cursor: pointer;
-  padding: 6px;
+  padding: 12px;
   border-radius: 6px;
   transition: background 0.2s ease;
+  z-index: 1010;
+  pointer-events: auto;
 }
 
 .nav-toggle-btn:hover {

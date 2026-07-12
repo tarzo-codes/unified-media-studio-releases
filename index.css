@@ -189,6 +189,7 @@ a {
 }
 
 .hero-container {
+  width: 100%;
   max-width: 800px;
   padding: 0 24px;
   z-index: 1;
@@ -275,6 +276,7 @@ a {
 
 /* --- Section headers --- */
 .section-header {
+  width: 100%;
   text-align: center;
   max-width: 650px;
   margin: 0 auto 60px auto;
@@ -736,6 +738,7 @@ a {
 }
 
 .accordion-container {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
@@ -873,6 +876,22 @@ a {
     max-width: 280px;
     justify-content: center;
   }
+
+  .tab-headers {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
+  }
+
+  .settings-form {
+    width: 100%;
+  }
 }
 
 /* --- Feedback Form Section --- */
@@ -883,6 +902,7 @@ a {
 }
 
 .feedback-container {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 0 24px;

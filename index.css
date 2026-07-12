@@ -149,11 +149,12 @@ a {
 
 .nav-toggle-btn {
   display: none;
-  background: none;
-  border: none;
-  color: var(--text-primary);
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: var(--text-primary) !important;
   cursor: pointer;
-  padding: 12px;
+  padding: 8px;
   border-radius: 6px;
   transition: background 0.2s ease;
   z-index: 1010;

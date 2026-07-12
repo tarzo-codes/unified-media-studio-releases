@@ -185,7 +185,7 @@
           <span class="logo-text">Unified Media Studio</span>
         </a>
       </div>
-      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu()">
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu(event)" ontouchstart="toggleMobileMenu(event)">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -391,7 +391,11 @@ sudo dnf install -y dejavu-sans-fonts fontconfig</code></pre>
       element.classList.add('active');
     }
 
-    function toggleMobileMenu() {
+    function toggleMobileMenu(event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
       const menu = document.getElementById('nav-links-menu');
       menu.classList.toggle('active');
     }

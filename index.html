@@ -20,7 +20,7 @@
         <img src="logo.jpg" alt="UMS Logo" class="nav-logo-img">
         <span class="logo-text">Unified Media Studio</span>
       </div>
-      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu()">
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" onclick="toggleMobileMenu(event)" ontouchstart="toggleMobileMenu(event)">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -429,7 +429,21 @@ sudo apt-get install -y fonts-dejavu fontconfig</code></pre>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="index.js"></script>
+  <script>
+    function toggleMobileMenu(event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      const menu = document.getElementById('nav-links-menu');
+      menu.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('nav-links-menu');
+      menu.classList.remove('active');
+    }
+  </script>
 </body>
 </html>

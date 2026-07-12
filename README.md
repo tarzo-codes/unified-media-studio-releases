@@ -1,6 +1,6 @@
-# Unified Media Studio — Stable Releases & Public Web Portal
+# Unified Media Studio — Early Test Builds & Public Web Portal
 
-This repository contains the official, stable production releases of **Unified Media Studio**, along with the interactive web portal interface.
+This repository contains the early alpha test builds of **Unified Media Studio**, along with the interactive web portal interface.
 
 ---
 
@@ -14,8 +14,8 @@ To launch the portal locally, simply open [index.html](index.html) in any modern
 
 ---
 
-## 📦 Stable Releases
-All stable build assets are stored in the `/downloads` directory:
+## 📦 Alpha Test Builds
+All test build assets are stored in the `/downloads` directory:
 * **Windows Setup**: `downloads/UnifiedMediaStudio_v1.1.5-alpha-Setup-Windows.exe`
 * **Windows Portable**: `downloads/UnifiedMediaStudio_v1.1.5-alpha-Portable.zip`
 * **Ubuntu/Debian (.deb)**: `downloads/UnifiedMediaStudio_v1.1.5-alpha-Linux-x64.deb`

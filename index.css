@@ -854,6 +854,18 @@ a {
     text-align: center;
     width: 100%;
   }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
 }
 
 /* --- Feedback Form Section --- */

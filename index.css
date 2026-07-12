@@ -820,3 +820,60 @@ a {
   .app-sidebar { width: 100%; height: 200px; }
   .nav-links { display: none; }
 }
+
+/* --- Feedback Form Section --- */
+.section-feedback {
+  padding: 80px 0;
+  border-top: 1px solid var(--border-color);
+  background: radial-gradient(100% 100% at center center, rgba(139, 92, 246, 0.02) 0%, transparent 100%);
+}
+
+.feedback-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.feedback-form {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feedback-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feedback-form select,
+.feedback-form input[type="text"],
+.feedback-form textarea {
+  background: #181f33;
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-sans);
+  transition: border-color 0.2s ease;
+}
+
+.feedback-form select:focus,
+.feedback-form input[type="text"]:focus,
+.feedback-form textarea:focus {
+  border-color: var(--accent-purple);
+}
+
+.btn-submit-issue {
+  align-self: flex-start;
+  margin-top: 10px;
+  font-size: 14px;
+}
+

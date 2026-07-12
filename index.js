@@ -239,3 +239,47 @@ function toggleAccordion(titleElement) {
   const item = titleElement.parentElement;
   item.classList.toggle('open');
 }
+
+// ── Submit GitHub Issue Form ──────────────────────────────────────────────────
+function submitGitHubIssue(event) {
+  event.preventDefault();
+
+  const categoryElement = document.getElementById('issue-type');
+  const titleElement = document.getElementById('issue-title');
+  const systemElement = document.getElementById('issue-system');
+  const bodyElement = document.getElementById('issue-body');
+
+  const category = categoryElement.options[categoryElement.selectedIndex].text;
+  const title = titleElement.value.trim();
+  const system = systemElement.value;
+  const bodyText = bodyElement.value.trim();
+
+  // Create GitHub New Issue URL template
+  const repoUrl = "https://github.com/tarzo-codes/unified-media-studio-releases/issues/new";
+  
+  // Format body markdown content
+  const issueBody = `### Environment
+* **OS / System:** ${system}
+* **Release Version:** v1.1.5-alpha
+
+### Details / Feedback
+${bodyText}
+
+---
+*Submitted via the Unified Media Studio portal web form.*`;
+
+  // Encode parameters
+  const finalTitle = encodeURIComponent(`[${category}] ${title}`);
+  const finalBody = encodeURIComponent(issueBody);
+
+  const gitHubUrl = `${repoUrl}?title=${finalTitle}&body=${finalBody}`;
+
+  // Open in a new tab
+  window.open(gitHubUrl, '_blank');
+
+  // Reset form
+  document.getElementById('issue-form').reset();
+  
+  logToConsole(`[SYSTEM] Issue template generated. Redirecting to GitHub Issues...`, 'system');
+}
+

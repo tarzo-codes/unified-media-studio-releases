@@ -323,7 +323,7 @@ function submitGitHubIssue(event) {
   // Format body markdown content
   const issueBody = `### Environment
 * **OS / System:** ${system}
-* **Release Version:** v1.1.5-alpha
+* **Release Version:** v1.1.6-alpha
 
 ### Details / Feedback
 ${bodyText}

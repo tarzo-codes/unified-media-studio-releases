@@ -1196,3 +1196,25 @@ a {
   font-size: 14px;
 }
 
+/* Alpha Warning Card */
+.alpha-warning-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #fbbf24;
+  margin: 16px auto 24px auto;
+  max-width: 680px;
+  text-align: left;
+  line-height: 1.5;
+}
+.alpha-warning-card .warning-icon {
+  flex-shrink: 0;
+  color: #fbbf24;
+}
+
+
